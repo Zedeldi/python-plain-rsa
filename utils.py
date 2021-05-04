@@ -1,5 +1,6 @@
-"""Helper functions for generating RSA keys."""
+"""Helper functions for generating RSA keys and encryption."""
 import math
+import sys
 
 
 def is_prime(x: int) -> bool:
@@ -29,3 +30,13 @@ def calc_d(e: int, lcm: int) -> int:
 		if ((e % lcm) * (x % lcm)) % lcm == 1:
 			return x
 	return None
+
+
+def bytes_to_int(b: bytes, byteorder=sys.byteorder) -> int:
+	"""Convert bytes to integer represented by byteorder."""
+	return int.from_bytes(b, byteorder)
+
+
+def int_to_bytes(x: int, byteorder=sys.byteorder) -> bytes:
+	"""Convert integer to bytes represented by byteorder."""
+	return x.to_bytes((x.bit_length() + 7) // 8, byteorder)
