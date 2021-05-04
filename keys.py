@@ -32,12 +32,20 @@ def gen_keys(p: int, q: int, e: int) -> tuple[PublicKey, PrivateKey]:
 	if p == q:
 		raise ValueError("p and q must be distinct values.")
 	if not utils.is_prime(p) or not utils.is_prime(q):
-		raise ValueError("Prime numbers required.")
+		raise ValueError("p and q must be prime integers.")
 	n = utils.calc_n(p, q)
 	lcm = utils.calc_lcm(p - 1, q - 1)
-	if e > lcm or not utils.is_prime(e):
-		raise ValueError("Invalid exponent.")
+	if e >= lcm or not utils.is_prime(e):
+		raise ValueError(
+			"e must be less than lcm(p - 1, q - 1) "
+			"and a prime integer."
+		)
 	d = utils.calc_d(e, lcm)
+	if not d:
+		raise ValueError(
+			"Cannot find a suitable value for d. "
+			"Try increasing e."
+		)
 	return (
 		PublicKey(n, e),
 		PrivateKey(n, d)
