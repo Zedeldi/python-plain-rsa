@@ -1,4 +1,5 @@
 """Encryption and type conversion handlers."""
+from functools import wraps
 from typing import Union
 
 from plain_rsa.keys import PublicKey, PrivateKey
@@ -7,6 +8,7 @@ from plain_rsa.utils import bytes_to_int, int_to_bytes
 
 def bytes_handler(func):
 	"""Convert to/from bytes when processing data."""
+	@wraps(func)
 	def inner(b: bytes, key: Union[PublicKey, PrivateKey]) -> bytes:
 		n = bytes_to_int(b)
 		x = func(n, key)
