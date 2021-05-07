@@ -25,11 +25,12 @@ def calc_lcm(p: int, q: int) -> int:
 
 
 def calc_d(e: int, lcm: int) -> int:
-	"""Return the modular multiplicative inverse of e and lcm."""
-	for x in range(1, lcm):
-		if ((e % lcm) * (x % lcm)) % lcm == 1:
-			return x
-	return None
+	"""
+	Return the modular multiplicative inverse of e (mod lcm).
+
+	Raise ValueError if e is not invertible with respect to the modulus lcm.
+	"""
+	return pow(e, -1, lcm)
 
 
 def bytes_to_int(b: bytes, byteorder=sys.byteorder) -> int:

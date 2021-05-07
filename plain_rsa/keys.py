@@ -40,8 +40,9 @@ def gen_keys(p: int, q: int, e: int) -> tuple[PublicKey, PrivateKey]:
 			"e must be less than lcm(p - 1, q - 1) "
 			"and a prime integer."
 		)
-	d = utils.calc_d(e, lcm)
-	if not d:
+	try:
+		d = utils.calc_d(e, lcm)
+	except ValueError:
 		raise ValueError(
 			"Cannot find a suitable value for d. "
 			"Try increasing e."
