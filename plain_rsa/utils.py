@@ -3,15 +3,22 @@ import math
 import sys
 
 
-def is_prime(x: int) -> bool:
-	"""Return whether x is a prime number."""
-	if x <= 1:
+def is_prime(n: int) -> bool:
+	"""
+	Primality test using 6k+-1 optimisation.
+
+	https://en.wikipedia.org/wiki/Primality_test#Python_code
+	"""
+	if n <= 3:
+		return n > 1
+	if n % 2 == 0 or n % 3 == 0:
 		return False
-	for n in range(2, x):
-		if (x % n) == 0:
+	i = 5
+	while i ** 2 <= n:
+		if n % i == 0 or n % (i + 2) == 0:
 			return False
-	else:
-		return True
+		i += 6
+	return True
 
 
 def calc_n(p: int, q: int) -> int:

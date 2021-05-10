@@ -24,6 +24,24 @@ Values for `p`, `q` and `e` are not generated and must be passed to `gen_keys`. 
 
 `plain_rsa.crypto` defines encryption and decryption methods. These accept `bytes` as input and return them after processing, by converting to/from `int` when necessary. Use `_encrypt` and `_decrypt` to work with integers.
 
+### Performance
+
+Python's built-in function `pow` is used for exponential functions, such as `encrypt`, `decrypt` and `calc_d`. Using arithmetic operators, the following expressions are equivalent, but perform poorly with large numbers.
+
+Encrypt: `(m ** e) % n`
+
+Decrypt: `(c ** d) % n`
+
+Modular multiplicative inverse:
+
+```py
+for x in range(1, lcm):
+    if (e * x) % lcm == 1:
+        return x
+```
+
+The primality test uses 6k+-1 optimisation, sourced from [Wikipedia](https://en.wikipedia.org/wiki/Primality_test#Python_code).
+
 ## Installation
 
 1. Clone: `git clone https://github.com/Zedeldi/python-plain-rsa.git`

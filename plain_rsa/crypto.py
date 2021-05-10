@@ -25,13 +25,13 @@ def _encrypt(m: int, public_key: PublicKey) -> int:
 	n, e = public_key.n, public_key.e
 	if m >= n:
 		raise ValueError("Message is too large to encrypt.")
-	return (m ** e) % n
+	return pow(m, e, n)
 
 
 def _decrypt(c: int, private_key: PrivateKey) -> int:
 	"""Decrypt c (int) using private_key."""
 	n, d = private_key.n, private_key.d
-	return (c ** d) % n
+	return pow(c, d, n)
 
 
 @bytes_handler
