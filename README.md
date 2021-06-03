@@ -1,6 +1,6 @@
 # python-plain-rsa
 
-[![GitHub license](https://img.shields.io/github/license/Zedeldi/python-plain-rsa?style=flat-square)](https://github.com/Zedeldi/python-plain-rsa/blob/master/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/Zedeldi/python-plain-rsa?style=flat-square)](https://github.com/Zedeldi/python-plain-rsa/commits)
+[![GitHub license](https://img.shields.io/github/license/Zedeldi/python-plain-rsa?style=flat-square)](https://github.com/Zedeldi/python-plain-rsa/blob/master/LICENSE) [![GitHub last commit](https://img.shields.io/github/last-commit/Zedeldi/python-plain-rsa?style=flat-square)](https://github.com/Zedeldi/python-plain-rsa/commits) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg?style=flat-square)](https://github.com/psf/black)
 
 Plain RSA cryptography written in pure-Python, without any padding or additional security features.
 

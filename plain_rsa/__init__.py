@@ -5,16 +5,12 @@ Key generation follows the process described in this Wikipedia article:
 https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 """
 from plain_rsa.crypto import encrypt, decrypt
-from plain_rsa.keys import (
-	PublicKey,
-	PrivateKey,
-	gen_keys
-)
+from plain_rsa.keys import PublicKey, PrivateKey, gen_keys
 
 __all__ = [
-	"encrypt",
-	"decrypt",
-	"PublicKey",
-	"PrivateKey",
-	"gen_keys"
+    "encrypt",
+    "decrypt",
+    "PublicKey",
+    "PrivateKey",
+    "gen_keys",
 ]
