@@ -2,7 +2,7 @@
 from functools import wraps
 from typing import Union
 
-from plain_rsa.keys import PublicKey, PrivateKey
+from plain_rsa.keys import PrivateKey, PublicKey
 from plain_rsa.utils import bytes_to_int, int_to_bytes
 
 

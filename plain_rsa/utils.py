@@ -40,11 +40,11 @@ def calc_d(e: int, lcm: int) -> int:
     return pow(e, -1, lcm)
 
 
-def bytes_to_int(b: bytes, byteorder=sys.byteorder) -> int:
+def bytes_to_int(b: bytes, byteorder: str = sys.byteorder) -> int:
     """Convert bytes to integer represented by byteorder."""
     return int.from_bytes(b, byteorder)
 
 
-def int_to_bytes(x: int, byteorder=sys.byteorder) -> bytes:
+def int_to_bytes(x: int, byteorder: str = sys.byteorder) -> bytes:
     """Convert integer to bytes represented by byteorder."""
     return x.to_bytes((x.bit_length() + 7) // 8, byteorder)
