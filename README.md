@@ -8,7 +8,7 @@ Plain RSA cryptography written in pure-Python, without any padding or additional
 
 > :exclamation: python-plain-rsa is intended for educational purposes and is *not* secure! Use [python-rsa](https://pypi.org/project/rsa/) instead, if you require secure RSA encryption.
 
-Without padding, RSA is not semantically secure, as it is a deterministic encryption algorithm; `encrypt(x, pubkey)` will always yield the same results. This makes plaintext attacks possible.
+Without padding, RSA is not semantically secure, as it is a deterministic encryption algorithm; `encrypt(m, public_key)` will always yield the same results. This makes plaintext attacks possible.
 
 Furthermore, by including padding, the ciphertext cannot be changed without producing invalid data, thus reducing its malleability -- a property which can be maliciously abused, even if the content of the message is still hidden.
 
@@ -64,6 +64,28 @@ public_key, private_key = plain_rsa.gen_keys(p, q, e)
 plaintext = b"RSA"
 ciphertext = plain_rsa.encrypt(plaintext, public_key)
 assert plain_rsa.decrypt(ciphertext, private_key) == plaintext
+```
+
+### Homomorphic Encryption
+
+> [Homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption) is a form of encryption that permits users to perform computations on its encrypted data without first decrypting it. These resulting computations are left in an encrypted form which, when decrypted, result in an identical output to that produced had the operations been performed on the unencrypted data.
+
+RSA (without padding) is partially homomorphic, due to the following property:
+
+![RSA Homomorphic Property](https://wikimedia.org/api/rest_v1/media/math/render/svg/b479619754ae20442f010bf9e92d87fddbe4a1f2)
+
+To demonstrate this, the `_encrypt` and `_decrypt` functions must be used to multiply integers. Byte-int conversion methods from `plain_rsa.utils` can be used manually, if the input or output is required in bytes.
+
+```py
+from plain_rsa.crypto import _decrypt, _encrypt
+
+m1 = 741
+m2 = 398
+
+c1 = _encrypt(m1, public_key) * _encrypt(m2, public_key)
+c2 = _encrypt(m1 * m2, public_key)
+
+assert _decrypt(c1, private_key) == _decrypt(c2, private_key)
 ```
 
 ## License
