@@ -88,6 +88,10 @@ c2 = _encrypt(m1 * m2, public_key)
 assert _decrypt(c1, private_key) == _decrypt(c2, private_key)
 ```
 
+## Tests
+
+Tests require `pytest`, which can be installed using the `[tests]` extra.
+
 ## License
 
 python-plain-rsa is licensed under the GPL v3 for everyone to use, modify and share freely.
